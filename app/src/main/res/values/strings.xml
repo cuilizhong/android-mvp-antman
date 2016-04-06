@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AntMan</string>
+
+    <string name="main_tab_message">消息</string>
+    <string name="main_tab_contacts">通讯录</string>
+    <string name="main_tab_music">音乐</string>
+    <string name="main_tab_my">我</string>
+    <string name="exit">再按一次退出应用!</string>
+
+    <string name="internet_error">网络异常</string>
 </resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_tab_two"
+    style="@style/MainTabLinStyle">
+
+    <ImageView
+        android:id="@+id/img_main_tab_two"
+        style="@style/MainTabImgStyle"
+        android:src="@drawable/main_tab_two" />
+
+    <TextView
+        android:id="@+id/txt_main_tab_two"
+        style="@style/MainTabTxtStyle"
+        android:text="@string/main_tab_contacts" />
+
+</LinearLayout>
