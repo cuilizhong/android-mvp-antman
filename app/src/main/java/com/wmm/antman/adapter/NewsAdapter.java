@@ -8,9 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.DraweeView;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.wmm.antman.R;
-import com.wmm.antman.entity.News;
+import com.wmm.antman.model.News;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.wmm.antman.entity.News;
+import com.wmm.antman.model.News;
 
 import java.util.ArrayList;
 import java.util.List;

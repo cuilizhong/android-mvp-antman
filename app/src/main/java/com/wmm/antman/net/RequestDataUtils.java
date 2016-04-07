@@ -1,11 +1,7 @@
 package com.wmm.antman.net;
 
-import com.wmm.antman.entity.News;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,7 +20,7 @@ public class RequestDataUtils {
         params.put("pageNum", String.valueOf(pageNum));
         try {
             OkHttpClientManager.getAsString(IP + "/appActivity/appActivityListIndex.do", call, params);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

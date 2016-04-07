@@ -2,6 +2,7 @@ package com.wmm.antman.activity;
 
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -15,7 +16,6 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        SystemClock.sleep(30*1000);
+
         initView();
     }
 
@@ -49,12 +49,11 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout_main);
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         mViewPager = (CustomViewPager) findViewById(R.id.viewpager_main);
-        mViewPager.setNoScroll(true);
+        mViewPager.setNoScroll(false);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_main);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
-
 
         initTabLayout();
         initToolbar();
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
      */
     private void initTabLayout() {
         mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_one));
-//        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_two));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_two));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_three));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_four));
         mTabLayout.setTabTextColors(ColorStateList.valueOf(getResources().getColor(R.color.white)));

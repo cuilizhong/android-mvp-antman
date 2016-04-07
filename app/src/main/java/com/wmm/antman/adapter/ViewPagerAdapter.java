@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.wmm.antman.fragment.NewsFragment;
+import com.wmm.antman.fragment.NewsFragmentByDataBinding;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -23,9 +24,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
+                return NewsFragmentByDataBinding.newInstance(position);
+            case 1:
                 return NewsFragment.newInstance(position);
-//            case 1:
-//                return NewsFragment.newInstance(position);
 //            case 2:
 //                return NewsFragment.newInstance(position);
 //            case 3:

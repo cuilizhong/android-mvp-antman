@@ -1,11 +1,9 @@
 package com.wmm.antman.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,8 +18,7 @@ import com.squareup.okhttp.Request;
 import com.wmm.antman.R;
 import com.wmm.antman.adapter.NewsAdapter;
 import com.wmm.antman.base.BaseFragment;
-import com.wmm.antman.entity.News;
-import com.wmm.antman.net.APIService;
+import com.wmm.antman.model.News;
 import com.wmm.antman.net.JsonUtil;
 import com.wmm.antman.net.OkHttpClientManager;
 import com.wmm.antman.net.RequestDataUtils;
@@ -32,10 +29,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import retrofit.Call;
-import retrofit.Retrofit;
 
 /**
  * Created by wangmingming on 2015/11/5 10:31.
@@ -70,6 +63,7 @@ public class NewsFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
         initView(rootView);
         mContext = getActivity();
+
         initData();
         requestData();
 
