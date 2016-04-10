@@ -25,8 +25,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return NewsFragmentByDataBinding.newInstance(position);
-            case 1:
-                return NewsFragment.newInstance(position);
+//            case 1:
+//                return NewsFragment.newInstance(position);
 //            case 2:
 //                return NewsFragment.newInstance(position);
 //            case 3:

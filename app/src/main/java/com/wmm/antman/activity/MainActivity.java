@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
      */
     private void initTabLayout() {
         mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_one));
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_two));
+//        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_two));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_three));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_four));
         mTabLayout.setTabTextColors(ColorStateList.valueOf(getResources().getColor(R.color.white)));

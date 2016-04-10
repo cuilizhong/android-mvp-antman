@@ -3,11 +3,11 @@
     >
 
     <data>
-        <import type="com.wmm.antman.model.modelview.NewsItemModel"/>
+        <import type="com.wmm.antman.model.modelview.NewsItemViewModel"/>
         <import type="android.view.View" />
         <variable
             name="model"
-            type="NewsItemModel"/>
+            type="NewsItemViewModel"/>
 
     </data>
 

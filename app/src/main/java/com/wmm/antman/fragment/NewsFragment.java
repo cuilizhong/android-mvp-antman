@@ -18,7 +18,7 @@ import com.squareup.okhttp.Request;
 import com.wmm.antman.R;
 import com.wmm.antman.adapter.NewsAdapter;
 import com.wmm.antman.base.BaseFragment;
-import com.wmm.antman.model.News;
+import com.wmm.antman.bean.News;
 import com.wmm.antman.net.JsonUtil;
 import com.wmm.antman.net.OkHttpClientManager;
 import com.wmm.antman.net.RequestDataUtils;
@@ -150,15 +150,15 @@ public class NewsFragment extends BaseFragment {
             switch (msg.what) {
                 case INITDATA:
                     String data = (String) msg.obj;
-                    List<News> str = JsonUtil.getNewsListJson(getActivity(),
-                            data);
+//                    List<News> str = JsonUtil.getNewsListJson(getActivity(),
+//                            data);
                     if (pageIndex == 0) {
                         mListData.clear();
                     }
 //                    mListData = JsonUtil.getdata(getActivity(), data);
-                    for (News an : str) {
-                        mListData.add(an);
-                    }
+//                    for (News an : str) {
+//                        mListData.add(an);
+//                    }
                     mNewsAdapter.setData(mListData);
                     break;
             }

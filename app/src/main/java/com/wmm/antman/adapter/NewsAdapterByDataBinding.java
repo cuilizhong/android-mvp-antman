@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wmm.antman.R;
+import com.wmm.antman.bean.NewByRetrofit;
 import com.wmm.antman.databinding.NewsItemBinding;
-import com.wmm.antman.model.News;
+import com.wmm.antman.bean.News;
+import com.wmm.antman.model.modelview.NewsItemViewModel;
 
 import java.util.List;
 
@@ -19,7 +21,8 @@ import java.util.List;
  */
 public class NewsAdapterByDataBinding extends RecyclerView.Adapter<NewsAdapterByDataBinding.BindingHolder> {
     //private final int mBackground;
-    private List<News> newsList;
+    private List<NewByRetrofit> newsList;
+    private NewsItemViewModel newsItemViewModel;
 
     public class BindingHolder extends RecyclerView.ViewHolder {
         private NewsItemBinding binding;
@@ -37,12 +40,12 @@ public class NewsAdapterByDataBinding extends RecyclerView.Adapter<NewsAdapterBy
         }
     }
 
-    public void setData(List<News> data) {
+    public void setData(List<NewByRetrofit> data) {
         newsList = data;
         this.notifyDataSetChanged();
     }
 
-    public NewsAdapterByDataBinding(Context context, List<News> newsList) {
+    public NewsAdapterByDataBinding(Context context, List<NewByRetrofit> newsList) {
         this.newsList = newsList;
     }
 
@@ -57,8 +60,10 @@ public class NewsAdapterByDataBinding extends RecyclerView.Adapter<NewsAdapterBy
 
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
-        News news = newsList.get(position);
-        holder.binding.imgItemNews.setImageURI(Uri.parse(news.getActivityIconUrl()));
+        NewByRetrofit newByRetrofit = newsList.get(position);
+        holder.binding.imgItemNews.setImageURI(Uri.parse(newByRetrofit.getAvatar_url()));
+        holder.binding.setModel(newsItemViewModel = new NewsItemViewModel());
+        newsItemViewModel.setTxt(newByRetrofit.getLogin());
         holder.binding.executePendingBindings();
     }
 

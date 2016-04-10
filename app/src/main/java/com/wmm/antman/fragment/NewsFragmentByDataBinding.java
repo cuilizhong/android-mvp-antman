@@ -16,17 +16,29 @@ import android.view.ViewGroup;
 import com.squareup.okhttp.Request;
 import com.wmm.antman.R;
 import com.wmm.antman.adapter.NewsAdapterByDataBinding;
+import com.wmm.antman.bean.NewByRetrofit;
 import com.wmm.antman.databinding.NewsFragmentBinding;
-import com.wmm.antman.model.News;
+import com.wmm.antman.bean.News;
+import com.wmm.antman.databinding.NewsItemBinding;
+import com.wmm.antman.model.ApiServiceModel;
+import com.wmm.antman.model.modelview.NewsItemViewModel;
+import com.wmm.antman.net.APIService;
 import com.wmm.antman.net.JsonUtil;
 import com.wmm.antman.net.OkHttpClientManager;
 import com.wmm.antman.net.RequestDataUtils;
+import com.wmm.antman.net.ServiceGenerator;
 import com.wmm.antman.utils.ToastUtil;
 import com.wmm.antman.utils.ViewStyleUtis;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by ming on 2016/4/7.
@@ -34,12 +46,17 @@ import java.util.List;
 public class NewsFragmentByDataBinding extends Fragment {
 
     private static final String ARG_POSITION = "position";
-    private List<News> mListData = new ArrayList<>();
+    private List<NewByRetrofit> mListData = new ArrayList<>();
     private static NewsFragmentByDataBinding mNewsFragmentByDataBinding = null;
-    private int pageIndex = 0;
     private NewsFragmentBinding mNewsFragmentBinding;
+    private NewsItemBinding mNewsItemBinding;
+    private NewsItemViewModel mNewsItemViewModel;
     private NewsAdapterByDataBinding mNewsAdapterByDataBinding;
+    private ApiServiceModel mApiServiceModel;
+    private APIService apiService;
     private static final int INITDATA = 1;
+
+
 
     public static NewsFragmentByDataBinding newInstance(int position) {
         if (mNewsFragmentByDataBinding == null) {
@@ -55,9 +72,39 @@ public class NewsFragmentByDataBinding extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mNewsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.news_fragment, container, false);
         initRecyclerView(mNewsFragmentBinding.RecyclerViewFragmentNews);
-        requestData();
+//        requestData();
+        repo();
         initData();
         return mNewsFragmentBinding.getRoot();
+    }
+
+    private void repo() {
+//        mNewsItemBinding.setModel(mNewsItemViewModel = new NewsItemViewModel());
+        mNewsItemViewModel = new NewsItemViewModel();
+        apiService = ServiceGenerator.createService(APIService.class);
+
+        Call call= apiService.repoNewsData("square", "retrofit");
+
+        call.enqueue(new Callback<List<NewByRetrofit>>() {
+            @Override
+            public void onResponse(Call<List<NewByRetrofit>> call, Response<List<NewByRetrofit>> response) {
+                //                    mListData = call.execute().body();
+                mHandler.obtainMessage(INITDATA, response.body()).sendToTarget();
+                ToastUtil.showToast("onResponse");
+                Log.d("onResponse",response.body().get(0).getAvatar_url()+"");
+            }
+
+            @Override
+            public void onFailure(Call<List<NewByRetrofit>> call, Throwable t) {
+                try {
+                    mListData = call.execute().body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Log.d("onFailure",t.getMessage());
+                ToastUtil.showToast("onFailure");
+            }
+        });
     }
 
     private void initRecyclerView(RecyclerView mRecyclerView) {
@@ -71,34 +118,13 @@ public class NewsFragmentByDataBinding extends Fragment {
                 mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
     }
 
-    public void requestData() {
-        RequestDataUtils.RequestMessageListData(call, pageIndex);
-    }
-
-    OkHttpClientManager.StringCallback call = new OkHttpClientManager.StringCallback() {
-        @Override
-        public void onFailure(Request request, IOException e) {
-            Log.d("response", e.toString());
-            ToastUtil.showToast(R.string.internet_error, 1000, R.drawable.ic_ab_drawer, Gravity.CENTER);
-        }
-
-        @Override
-        public void onResponse(String response) {
-            Log.d("response", response);
-            mHandler.obtainMessage(INITDATA, response).sendToTarget();
-//            mListData = JsonUtil.getNewsListJson(getActivity(),response);
-        }
-    };
-
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case INITDATA:
-                    String data = (String) msg.obj;
-                    List<News> newsList = JsonUtil.getNewsListJson(getActivity(),
-                            data);
+                    List<NewByRetrofit> newsList = (List<NewByRetrofit>)msg.obj;
                     mNewsAdapterByDataBinding.setData(newsList);
                     break;
             }

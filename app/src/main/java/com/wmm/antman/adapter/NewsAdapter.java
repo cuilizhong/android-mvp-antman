@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.DraweeView;
 import com.wmm.antman.R;
-import com.wmm.antman.model.News;
+import com.wmm.antman.bean.News;
 
 import java.util.List;
 

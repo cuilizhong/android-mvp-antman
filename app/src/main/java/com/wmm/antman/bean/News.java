@@ -1,4 +1,4 @@
-package com.wmm.antman.model;
+package com.wmm.antman.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

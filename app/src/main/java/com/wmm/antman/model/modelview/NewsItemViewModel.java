@@ -4,11 +4,12 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wmm.antman.BR;
 
 /**
  * Created by ming on 2016/4/7.
  */
-public class NewsItemModel extends BaseObservable {
+public class NewsItemViewModel extends BaseObservable {
     private String txt;
     private SimpleDraweeView img;
 
@@ -19,6 +20,7 @@ public class NewsItemModel extends BaseObservable {
 
     public void setTxt(String txt) {
         this.txt = txt;
+        notifyPropertyChanged(BR.txt);
     }
 
     public SimpleDraweeView getImg() {

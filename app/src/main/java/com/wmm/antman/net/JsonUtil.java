@@ -7,7 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.wmm.antman.model.News;
+import com.wmm.antman.bean.News;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,22 +25,22 @@ public class JsonUtil {
 
     public static Integer status = 111111;
 
-
-    public static List<News> getNewsListJson(Context context,String JSONString) {
-        List<News> newsList = null;
-        if (null != JSONString) {
-            Gson gson = new Gson();
-            JsonParser parser = new JsonParser();
-            newsList = new ArrayList<News>();
-            JsonObject jsonObject = parser.parse(JSONString.toString()).getAsJsonObject();
-            JsonArray jsonArray = jsonObject.getAsJsonArray("data");
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JsonElement el = jsonArray.get(i);
-                News news = gson.fromJson(el,
-                        News.class);
-                newsList.add(news);
-            }
-        }
-        return newsList;
-    }
+//
+//    public static List<News> getNewsListJson(Context context,String JSONString) {
+//        List<News> newsList = null;
+//        if (null != JSONString) {
+//            Gson gson = new Gson();
+//            JsonParser parser = new JsonParser();
+//            newsList = new ArrayList<News>();
+//            JsonObject jsonObject = parser.parse(JSONString.toString()).getAsJsonObject();
+//            JsonArray jsonArray = jsonObject.getAsJsonArray("data");
+//            for (int i = 0; i < jsonArray.size(); i++) {
+//                JsonElement el = jsonArray.get(i);
+//                News news = gson.fromJson(el,
+//                        News.class);
+//                newsList.add(news);
+//            }
+//        }
+//        return newsList;
+//    }
 }
