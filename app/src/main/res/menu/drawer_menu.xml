@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_followers"
+            android:checked="true"
+            android:icon="@drawable/am_followers"
+            android:title="@string/my_followers" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_starred"
+            android:checked="true"
+            android:icon="@drawable/am_starred"
+            android:title="@string/my_starred" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_following"
+            android:checked="true"
+            android:icon="@drawable/am_following"
+            android:title="@string/my_following" />
+    </group>
+</menu>

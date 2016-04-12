@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/match_parent"
+    android:layout_marginBottom="5dp"
+    android:background="@color/github_color"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/my_header_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/leak_canary_icon"
+        app:roundAsCircle="true" />
+
+
+    <TextView
+        android:id="@+id/my_email"
+        style="@style/MainDrawerHeaderTxtStyle"
+        android:drawableLeft="@drawable/am_email"
+        android:text="840179939@qq.com" />
+
+    <TextView
+        android:id="@+id/my_address"
+        style="@style/MainDrawerHeaderTxtStyle"
+        android:drawableLeft="@drawable/am_address"
+        android:text="上海" />
+
+
+    <TextView
+        android:id="@+id/my_join"
+        style="@style/MainDrawerHeaderTxtStyle"
+        android:drawableLeft="@drawable/am_join"
+        android:text="Joined on 25 Nov 2013" />
+
+
+</LinearLayout>

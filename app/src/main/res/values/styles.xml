@@ -13,9 +13,10 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorControlHighlight">@color/white</item>
         <!--状态栏的颜色-->
-        <item name="colorPrimaryDark">@color/blue_500</item>
+        <item name="colorPrimaryDark">@color/github_color</item>
         <!--ToolBar标题栏的颜色-->
-        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorPrimary">@color/github_color</item>
+
           <!--设置波纹颜色 点击时变化后的显示颜色-->
         <item name="colorAccent">@color/transparent</item> <!--设置checkbox等控件的选中颜色-->
         <item name="selectableItemBackground">@drawable/selec_item_backg</item> <!--点击时变化的颜色-->
@@ -39,7 +40,7 @@
 
     <style name="drawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/blue_500</item>
+        <item name="color">@color/github_color</item>
     </style>
 
     <color name="accent_translucent">@color/white</color>
@@ -86,6 +87,17 @@
         <item name="android:layout_marginBottom">3dp</item>
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/main_tab_txt_one</item>
+    </style>
+
+    <!--Main drawer header Txt样式-->
+    <style name="MainDrawerHeaderTxtStyle" parent="wrap_content">
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
 
 </resources>

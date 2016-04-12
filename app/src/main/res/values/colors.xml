@@ -5,6 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="main_tab_color">#11CD6E</color>
+    <color name="github_color">#333333</color>
+    <color name="github_color_select">#4D4D4D</color>
+
 
     <!--Black 黑色 -->
     <color name="black">#000000</color>

@@ -59,7 +59,7 @@ public class ToastUtil {
     }
 
     public static void showToast(String message) {
-        showToast(message, Toast.LENGTH_LONG, 0, Gravity.BOTTOM);
+        showToast(String.valueOf(message), Toast.LENGTH_LONG, 0, Gravity.BOTTOM);
     }
 
     public static void showToast(int message, int icon) {

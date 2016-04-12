@@ -8,4 +8,7 @@
     <string name="exit">再按一次退出应用!</string>
 
     <string name="internet_error">网络异常</string>
+    <string name="my_starred">Starred</string>
+    <string name="my_followers">Followers</string>
+    <string name="my_following">Following</string>
 </resources>
