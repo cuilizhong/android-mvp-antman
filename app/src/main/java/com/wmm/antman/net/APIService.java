@@ -1,5 +1,6 @@
 package com.wmm.antman.net;
 
+import com.wmm.antman.bean.MyFollowersBean;
 import com.wmm.antman.bean.NewByRetrofit;
 
 import java.util.List;
@@ -21,4 +22,11 @@ public interface APIService {
     Call<List<NewByRetrofit>> repoNewsData(
             @Path("owner") String owner,
             @Path("repo") String repo);
+
+    //请求我的粉丝
+    @GET("/users/{user}/followers")
+    Call<List<MyFollowersBean>> repoFollowersData(
+            @Path("user") String user);
+
+
 }

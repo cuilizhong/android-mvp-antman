@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.wmm.antman.R;
 import com.wmm.antman.bean.NewByRetrofit;
 import com.wmm.antman.databinding.NewsItemBinding;
-import com.wmm.antman.bean.News;
 import com.wmm.antman.model.modelview.NewsItemViewModel;
 
 import java.util.List;

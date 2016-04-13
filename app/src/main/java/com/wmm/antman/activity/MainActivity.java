@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.wmm.antman.R;
 import com.wmm.antman.adapter.ViewPagerAdapter;
+import com.wmm.antman.utils.IntentUtils;
 import com.wmm.antman.utils.ToastUtil;
 import com.wmm.antman.witget.CustomViewPager;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
     public static Toolbar mToolbar;
     private CustomViewPager mViewPager;
     private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ViewPagerAdapter mViewPagerAdapter;
     private long exitTime = 0;
@@ -46,16 +49,18 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
      */
     private void initView() {
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout_main);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        mToolbar = (Toolbar) findViewById(R.id.base_toolbar);
         mViewPager = (CustomViewPager) findViewById(R.id.viewpager_main);
         mViewPager.setNoScroll(false);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_main);
+        mNavigationView = (NavigationView) findViewById(R.id.navigationView);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
 
         initTabLayout();
         initToolbar();
+        setupDrawerContent(mNavigationView);
     }
 
     private void initToolbar() {
@@ -98,6 +103,32 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
         });
     }
 
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+                        switch (menuItem.getItemId()) {
+                            case R.id.my_followers:
+                             IntentUtils.ToStartActivity(MainActivity.this,MyFollowerActivity.class);
+                                break;
+                            case R.id.my_starred:
+                                ToastUtil.showToast("my_starred");
+                                break;
+                            case R.id.my_following:
+                                ToastUtil.showToast("my_following");
+                                break;
+                            default:
+                                break;
+                        }
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -134,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.titlebar_search:
-                final View coordinatorLayoutView = findViewById(R.id.toolbar_main);
+                final View coordinatorLayoutView = findViewById(R.id.base_toolbar);
                 Snackbar.make(coordinatorLayoutView, "h", Snackbar.LENGTH_LONG).setAction("add", mOnClickListener).show();
                 //TODO 搜索
                 break;

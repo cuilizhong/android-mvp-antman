@@ -5,7 +5,8 @@
             android:id="@+id/my_followers"
             android:checked="true"
             android:icon="@drawable/am_followers"
-            android:title="@string/my_followers" />
+            android:title="@string/my_followers"
+            />
     </group>
 
     <group android:checkableBehavior="single">
@@ -23,4 +24,5 @@
             android:icon="@drawable/am_following"
             android:title="@string/my_following" />
     </group>
+
 </menu>

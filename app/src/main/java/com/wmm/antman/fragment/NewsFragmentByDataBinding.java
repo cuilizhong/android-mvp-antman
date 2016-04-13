@@ -33,15 +33,15 @@ import retrofit2.Response;
  */
 public class NewsFragmentByDataBinding extends BaseFragment {
 
+    private static final String TAG = "NewsFragmentByDataBinding";
+
     private static final String ARG_POSITION = "position";
-    private List<NewByRetrofit> mListData = new ArrayList<>();
+    private List<NewByRetrofit> mList;
     private static NewsFragmentByDataBinding mNewsFragmentByDataBinding = null;
     private NewsFragmentBinding mNewsFragmentBinding;
     private NewsAdapterByDataBinding mNewsAdapterByDataBinding;
     private APIService apiService;
     private static final int INITDATA = 1;
-
-
 
     public static NewsFragmentByDataBinding newInstance(int position) {
         if (mNewsFragmentByDataBinding == null) {
@@ -57,7 +57,6 @@ public class NewsFragmentByDataBinding extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mNewsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.news_fragment, container, false);
         initRecyclerView(mNewsFragmentBinding.RecyclerViewFragmentNews);
-//        requestData();
         repo();
         initData();
         return mNewsFragmentBinding.getRoot();
@@ -66,19 +65,18 @@ public class NewsFragmentByDataBinding extends BaseFragment {
     private void repo() {
         apiService = ServiceGenerator.createService(APIService.class);
 
-        Call call= apiService.repoNewsData("square", "retrofit");
+        Call call = apiService.repoNewsData("square", "retrofit");
 
         call.enqueue(new Callback<List<NewByRetrofit>>() {
             @Override
             public void onResponse(Call<List<NewByRetrofit>> call, Response<List<NewByRetrofit>> response) {
-                //                    mListData = call.execute().body();
                 mHandler.obtainMessage(INITDATA, response.body()).sendToTarget();
-                Log.d("onResponse",response.body().get(0).getAvatar_url()+"");
+                Log.d(TAG, response.body().get(0).getAvatar_url() + "");
             }
 
             @Override
             public void onFailure(Call<List<NewByRetrofit>> call, Throwable t) {
-                Log.d("onFailure",t.getMessage());
+                Log.d(TAG, t.getMessage());
                 ToastUtil.showToast("onFailure");
             }
         });
@@ -101,15 +99,16 @@ public class NewsFragmentByDataBinding extends BaseFragment {
             super.handleMessage(msg);
             switch (msg.what) {
                 case INITDATA:
-                    List<NewByRetrofit> newsList = (List<NewByRetrofit>)msg.obj;
-                    mNewsAdapterByDataBinding.setData(newsList);
+                    List<NewByRetrofit> mList = (List<NewByRetrofit>) msg.obj;
+                    mNewsAdapterByDataBinding.setData(mList);
                     break;
             }
         }
     };
 
     private void initData() {
-        mNewsAdapterByDataBinding = new NewsAdapterByDataBinding(getActivity(), mListData);
+        mList = new ArrayList<>();
+        mNewsAdapterByDataBinding = new NewsAdapterByDataBinding(getActivity(), mList);
         mNewsFragmentBinding.RecyclerViewFragmentNews.setAdapter(mNewsAdapterByDataBinding);
     }
 }

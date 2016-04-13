@@ -20,6 +20,7 @@ public class ToastUtil {
 
     private static String lastToast = "";
     private static long lastToastTime;
+    private static Toast toast;
 
     public static void showCommonToast(String message, int duration, int icon, int gravity) {
         if (message != null && !message.equalsIgnoreCase("")) {
@@ -98,6 +99,7 @@ public class ToastUtil {
 
     public static void showToast(String message, int duration, int icon,
                                  int gravity) {
+        cancelToast();
         if (message != null && !message.equalsIgnoreCase("")) {
             long time = System.currentTimeMillis();
             if (!message.equalsIgnoreCase(lastToast)
@@ -116,7 +118,7 @@ public class ToastUtil {
                     ((ImageView) view.findViewById(R.id.icon_iv))
                             .setVisibility(View.VISIBLE);
                 }
-                Toast toast = new Toast(MyApplication.context());
+                toast = new Toast(MyApplication.context());
                 toast.setView(view);
                 if (gravity == Gravity.CENTER) {
                     toast.setGravity(gravity, 0, 0);
@@ -129,6 +131,12 @@ public class ToastUtil {
                 lastToast = message;
                 lastToastTime = System.currentTimeMillis();
             }
+        }
+    }
+
+    public static void cancelToast() {
+        if (toast != null) {
+            toast.cancel();
         }
     }
 }

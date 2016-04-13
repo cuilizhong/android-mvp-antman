@@ -29,12 +29,14 @@
                 android:background="@android:color/transparent" />
 
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_main"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/github_color"></android.support.v7.widget.Toolbar>
+            <!--<android.support.v7.widget.Toolbar-->
+                <!--android:id="@+id/toolbar_main"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="?attr/actionBarSize"-->
+                <!--android:background="@color/github_color"></android.support.v7.widget.Toolbar>-->
 
+
+            <include layout="@layout/base_toolbar"></include>
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout_main"
