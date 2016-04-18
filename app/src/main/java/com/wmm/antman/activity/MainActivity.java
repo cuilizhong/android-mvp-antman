@@ -2,7 +2,6 @@ package com.wmm.antman.activity;
 
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -22,6 +21,8 @@ import android.widget.Toast;
 
 import com.wmm.antman.R;
 import com.wmm.antman.adapter.ViewPagerAdapter;
+import com.wmm.antman.followers.FollowersActivity;
+import com.wmm.antman.following.FollowingActivity;
 import com.wmm.antman.utils.IntentUtils;
 import com.wmm.antman.utils.ToastUtil;
 import com.wmm.antman.witget.CustomViewPager;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
      * 初始化  TabLayout
      */
     private void initTabLayout() {
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_one));
+//        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_one));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_two));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_three));
 //        mTabLayout.addTab(mTabLayout.newTab().setCustomView(R.layout.main_tab_four));
@@ -112,12 +113,13 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
                         menuItem.setChecked(true);
                         switch (menuItem.getItemId()) {
                             case R.id.my_followers:
-                             IntentUtils.ToStartActivity(MainActivity.this,MyFollowerActivity.class);
+                             IntentUtils.ToStartActivity(MainActivity.this,FollowersActivity.class);
                                 break;
                             case R.id.my_starred:
-                                ToastUtil.showToast("my_starred");
+//                                IntentUtils.ToStartActivity(MainActivity.this,FollowersActivity.class);
                                 break;
                             case R.id.my_following:
+                                IntentUtils.ToStartActivity(MainActivity.this,FollowingActivity.class);
                                 ToastUtil.showToast("my_following");
                                 break;
                             default:

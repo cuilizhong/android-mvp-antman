@@ -1,14 +1,9 @@
-package com.wmm.antman.bean;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package com.wmm.antman.data;
 
 /**
- * Created by ming on 2016/4/13.
+ * Created by ming on 2016/4/15.
  */
-public class MyFollowersBean implements Parcelable {
-
-
+public final class Followers {
     /**
      * login : 4148
      * id : 5877145
@@ -46,64 +41,6 @@ public class MyFollowersBean implements Parcelable {
     private String received_events_url;
     private String type;
     private boolean site_admin;
-
-    protected MyFollowersBean(Parcel in) {
-        login = in.readString();
-        id = in.readInt();
-        avatar_url = in.readString();
-        gravatar_id = in.readString();
-        url = in.readString();
-        html_url = in.readString();
-        followers_url = in.readString();
-        following_url = in.readString();
-        gists_url = in.readString();
-        starred_url = in.readString();
-        subscriptions_url = in.readString();
-        organizations_url = in.readString();
-        repos_url = in.readString();
-        events_url = in.readString();
-        received_events_url = in.readString();
-        type = in.readString();
-        site_admin = in.readByte() != 0;
-    }
-
-    public static final Creator<MyFollowersBean> CREATOR = new Creator<MyFollowersBean>() {
-        @Override
-        public MyFollowersBean createFromParcel(Parcel in) {
-            return new MyFollowersBean(in);
-        }
-
-        @Override
-        public MyFollowersBean[] newArray(int size) {
-            return new MyFollowersBean[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(login);
-        dest.writeInt(id);
-        dest.writeString(avatar_url);
-        dest.writeString(gravatar_id);
-        dest.writeString(url);
-        dest.writeString(html_url);
-        dest.writeString(followers_url);
-        dest.writeString(following_url);
-        dest.writeString(gists_url);
-        dest.writeString(starred_url);
-        dest.writeString(subscriptions_url);
-        dest.writeString(organizations_url);
-        dest.writeString(repos_url);
-        dest.writeString(events_url);
-        dest.writeString(received_events_url);
-        dest.writeString(type);
-        dest.writeByte((byte) (site_admin ? 1 : 0));
-    }
 
     public String getLogin() {
         return login;
@@ -240,4 +177,5 @@ public class MyFollowersBean implements Parcelable {
     public void setSite_admin(boolean site_admin) {
         this.site_admin = site_admin;
     }
+
 }

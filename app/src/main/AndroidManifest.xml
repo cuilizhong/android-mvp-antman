@@ -21,8 +21,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.MyFollowerActivity">
+        <activity android:name="com.wmm.antman.followers.FollowersActivity">
         </activity>
+        <activity android:name="com.wmm.antman.following.FollowingActivity">
+        </activity>
+
     </application>
 
 

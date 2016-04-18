@@ -1,9 +1,15 @@
 package com.wmm.antman.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
+
+import com.wmm.antman.R;
 
 /**
  * Created by ming on 2015/11/4.
@@ -11,11 +17,32 @@ import android.view.MotionEvent;
 public class BaseActivity extends AppCompatActivity {
 
     private GestureDetector mGestureDetector;
+    protected Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.base_activity);
         RightSlidingFinishActivity();
+        initToolBar(mToolbar);
+    }
+
+    protected void initToolBar(Toolbar baseToolbar) {
+        mToolbar = (Toolbar) findViewById(R.id.base_toolbar);
+        if (null!=baseToolbar){
+            supportPostponeEnterTransition();
+            setSupportActionBar(baseToolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            baseToolbar.setHapticFeedbackEnabled(true);
+            baseToolbar.setTitle(R.string.my_followers);
+
+            baseToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+        }
     }
 
     /**
